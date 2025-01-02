@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Censuses</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @censuses.each do |census| %>
+        <tr>
+          <td><%= census.name %></td>
+          <td><%= census.description %></td>
+          <td><%= census.created_at %></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Qubit</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "qubit/application", media: "all", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" %>
+  <%= javascript_include_tag "//code.jquery.com/jquery-3.7.1.min.js" %>
+  <%= javascript_include_tag "//cdn.datatables.net/2.1.8/js/dataTables.min.js" %>
+</head>
+<body>
+
+<%= yield %>
+
+<script>
+$(document).ready( function () {
+    $('.datatable').DataTable();
+} );
+</script>
+</body>
+</html>

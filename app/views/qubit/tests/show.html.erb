@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <h1><%= @test.name %></h1>
+
+  <p><%= @test.description %></p>
+
+  <% if @test.traffic_allocation.present? %>
+    TODO: show traffic allocation
+    TODO: increase rollout if in canary mode
+  <% else %>
+    <div>
+      <%= form_with(url: launch_test_path(@test), method: :patch) do |form| %>
+        <div>
+          <%= form.check_box :canary, checked: true %>
+          <%= form.label :canary, "Canary" %>
+        </div>
+        <%= form.submit "Launch" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <h3>Variants</h3>
+    <div>
+      <% @test.variants.each do |variant| %>
+        <div>
+          <div>
+            <h4><%= variant.name %></h4>
+          </div>
+          <div>
+            <p><%= variant.description %></p>
+            <% if @test.traffic_allocation.present? %>
+              <p>Traffic allocation: <%= number_to_percentage(@test.traffic_allocation[variant.id.to_s], precision: 1) %></p>
+            <% end %>
+          </div>
+          <div>
+            <% unless @test.traffic_allocation.present? %>
+              <%= button_to "Delete", test_variant_path(@test, variant), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "button danger" %>
+            <% end %>
+            <%= button_to "Edit", edit_test_variant_path(@test, variant) %>
+            <%= button_to "Close with this variant", close_test_variant_path(@test, variant), method: :patch, form: { data: { turbo_confirm: "Are you sure? This will route all traffic to this variant." } } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tests</h1>
+
+<div>
+  <table class="datatable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tests.each do |test| %>
+        <tr>
+          <td><%= link_to test.name, test %></td>
+          <td><%= test.status %></td>
+          <td><%= test.description %></td>
+          <td><%= test.owner.try(:name) || test.owner_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New test", new_test_path, class: "button" %>

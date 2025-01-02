@@ -1,0 +1,15 @@
+<h1>Example</h1>
+
+<p>This is an example for the test <%= @example.name %>.</p>
+
+<p>
+User ID: <%= Qubit.current_user.call.id %>
+<br>
+Variant: <%= @example.variant_for(Qubit.current_user.call).name %>
+</p>
+
+<% @example.variants.each do |variant| %>
+  <%= form_tag Qubit::Engine.routes.url_helpers.override_test_variant_path(@example, variant), method: :patch do %>
+    <%= submit_tag "Override to #{variant.name}", class: "button" %>
+  <% end %>
+<% end %>

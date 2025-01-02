@@ -1,0 +1,31 @@
+<div>
+  <h1>New Test</h1>
+
+  <%= form_with(model: @test, local: true) do |form| %>
+    <% if @test.errors.any? %>
+      <div>
+        <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
+        <ul>
+          <% @test.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :description %>
+      <%= form.text_area :description, rows: 4 %>
+    </div>
+
+    <div>
+      <%= form.submit "Create Test" %>
+      <%= link_to "Cancel", tests_path %>
+    </div>
+  <% end %>
+</div>

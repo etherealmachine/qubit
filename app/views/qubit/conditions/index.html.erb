@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">Available Conditions</h1>
+
+  <% @conditions.group_by(&:klass).each do |klass, conditions| %>
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4"><%= klass.name %></h2>
+      <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Condition</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Description</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <% conditions.each do |condition| %>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 text-sm text-gray-900"><%= condition.name %></td>
+              <td class="px-6 py-4 text-sm text-gray-500"><%= condition.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
