@@ -1,8 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
 <div>
-  <h1><%= @test.name %></h1>
+  <% unless @test.traffic_allocation.present? %>
+    <%= link_to "Edit", edit_test_path(@test), class: "button" %>
+  <% end %>
 
+  <h1><%= @test.name %></h1>
   <p><%= @test.description %></p>
 
   <% if @test.traffic_allocation.present? %>
@@ -35,11 +38,9 @@
             <% end %>
           </div>
           <div>
-            <% unless @test.traffic_allocation.present? %>
-              <%= button_to "Delete", test_variant_path(@test, variant), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "button danger" %>
+            <% if @test.traffic_allocation.present? %>
+              <%= button_to "Close with this variant", close_test_variant_path(@test, variant), method: :patch, form: { data: { turbo_confirm: "Are you sure? This will route all traffic to this variant." } } %>
             <% end %>
-            <%= button_to "Edit", edit_test_variant_path(@test, variant) %>
-            <%= button_to "Close with this variant", close_test_variant_path(@test, variant), method: :patch, form: { data: { turbo_confirm: "Are you sure? This will route all traffic to this variant." } } %>
           </div>
         </div>
       <% end %>

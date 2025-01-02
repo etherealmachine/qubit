@@ -16,5 +16,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "puma"
   spec.add_dependency "sqlite3"
   spec.add_dependency "sprockets-rails"
+  spec.add_dependency "importmap-rails"
   spec.add_dependency "turbo-rails"
 end

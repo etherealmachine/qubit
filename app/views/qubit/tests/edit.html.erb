@@ -1,0 +1,51 @@
+<p style="color: green"><%= notice %></p>
+
+<%= form_for(@test) do |form| %>
+  <div class="test-fields">
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    
+    <div>
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+  </div>
+
+  <div class="variants">
+    <h3>Variants</h3>
+    <% @test.variants.each do |variant| %>
+      <div class="variant-fields">
+        <div>
+          <%= form.label "variants[#{variant.id}][name]", "Variant Name" %>
+          <%= form.text_field "variants[#{variant.id}][name]", value: variant.name %>
+        </div>
+        
+        <div>
+          <%= form.label "variants[#{variant.id}][description]", "Variant Description" %>
+          <%= form.text_area "variants[#{variant.id}][description]", value: variant.description %>
+        </div>
+        
+        <div class="variant-actions">
+          <%= link_to "Delete Variant",
+              test_variant_path(@test, variant),
+              method: :delete,
+              class: "button danger",
+              data: { turbo_method: :delete } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to "Add Variant",
+        test_variants_path(@test),
+        method: :post,
+        class: "button",
+        data: { turbo_method: :post } %>
+        
+    <%= link_to "Cancel", test_path(@test), class: "button" %>
+    <%= form.submit "Save Changes", class: "button primary" %>
+  </div>
+<% end %>

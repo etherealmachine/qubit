@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     qubit (0.1.0)
+      importmap-rails
       puma
       rails (>= 7.1.4)
       sprockets-rails
@@ -104,6 +105,10 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.1.0)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.7.2)
     irb (1.14.0)
       rdoc (>= 4.0.0)
@@ -207,11 +212,13 @@ PLATFORMS
 DEPENDENCIES
   annotate
   debug
+  importmap-rails
   puma
   qubit!
   rails (>= 7.1.4)
   sprockets-rails
   sqlite3
+  turbo-rails
 
 BUNDLED WITH
    2.4.10
